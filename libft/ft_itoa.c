@@ -10,25 +10,52 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libc.h>
+#include <libft.h>
+
+int	digit_counter(int n)
+{
+	int	len;
+
+	len = 0;
+	if (n == 0)
+	{
+		return (1);
+	}
+	else if (n < 0)
+	{
+		len++;
+		n = -n;
+	}
+	while (n > 0)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
+}
 
 char	*ft_itoa(int n)
 {
 	char	*str;
+	int		len;
+	int		i;
 
-	if (n == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return ;
-	}
+	len = digit_counter(n);
+	i = 0;
+	str = (char *)malloc((len + 1) * sizeof(char));
+	str[len] = '\0';
+	if (!str)
+		return (NULL);
 	if (n < 0)
 	{
-		write(1, "-", 1);
+		str[0] = '-';
 		n *= -1;
-	}
-	if (n > 9)
+	}	
+	while (n > 0)
 	{
-		ft_putnbr(n / 10);
+		str[len - i - 1] = (n % 10) + 48;
+		n /= 10;
+		i++;
 	}
-	str = n % 10 + 48;
+	return (str);
 }
