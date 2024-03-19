@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	i;
-	char *dest;
-	int	len;
+	int		i;
+	char	*dest;
+	int		len;
 
 	i = 0;
 	len = ft_strlen(s);
@@ -26,7 +26,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	while (s[i])
 	{
 		dest[i] = f(i, s[i]);
-		i++; 
+		i++;
 	}
 	dest[i] = '\0';
 	return (dest);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 int	digit_counter(int n)
 {
@@ -50,7 +50,7 @@ char	*ft_itoa(int n)
 	{
 		str[0] = '-';
 		n *= -1;
-	}	
+	}
 	while (n > 0)
 	{
 		str[len - i - 1] = (n % 10) + 48;

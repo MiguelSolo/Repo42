@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libc.h>
+#include "libft.h"
 
 unsigned int	ft_search_head(char const *s1, char const *set)
 {
