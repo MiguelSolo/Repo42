@@ -19,7 +19,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	s3 = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (s3 == NULL)
 		return (0);
-	s3[ft_strlen(s1) + ft_strlen(s2) + 1] = '\0';
-	s3 = ft_strcat(s1, s2);
+	ft_strlcpy(s3, (char *)s1, ft_strlen(s1));
+	ft_strlcat(s3, (char *)s1, ft_strlen(s1));
 	return (s3);
 }

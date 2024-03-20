@@ -6,7 +6,7 @@
 #    By: mirodri2 <mirodri2@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/19 17:19:08 by mirodri2          #+#    #+#              #
-#    Updated: 2024/03/19 17:42:41 by mirodri2         ###   ########.fr        #
+#    Updated: 2024/03/20 11:56:45 by mirodri2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,14 +49,19 @@ SOURCES = ft_atoi.c \
 		  ft_tolower.c \
 		  ft_toupper.c 
 
-OBJECTS = $(SOURCES:.c = .o)
+OBJECTS = $(SOURCES:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra
 
 $(NAME): $(OBJECTS)
-	cc -o $(NAME) $(OBJECTS)
-	ar rsc $(OBJECTS)
+	ar rc $(NAME) $(OBJECTS)
 
-.PHONY: clean all
+$(OBJECTS): $(SOURCES)
+	gcc $(CFLAGS) -c $(SOURCES)
+
+.PHONY: clean all fclean
 clean:
-	@rm -rf *.o $(NAME)
+	@rm -rf *.o
+fclean: clean
+	@rm -rf $(NAME) || true
+re: fclean all

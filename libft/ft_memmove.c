@@ -14,11 +14,10 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int		i;
+	size_t	i;
 	char	*ptr_d;
 	char	*ptr_c;
 
-	i = 0;
 	ptr_d = (char *) dst;
 	ptr_c = (char *) src;
 	if (ptr_d < ptr_c)
@@ -32,10 +31,10 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	}
 	else
 	{
-		while (len)
+		while (len--)
 		{
 			ptr_d[len] = ptr_c[len];
-			len--;
 		}
 	}
+	return (ptr_d);
 }

@@ -45,6 +45,7 @@ size_t	ft_search_tail(char const *s1, char const *set)
 		i++;
 	}
 	len = (ft_strlen(s1) - i) - ft_search_head(s1, set);
+	return (len);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
