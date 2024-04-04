@@ -18,9 +18,7 @@ int	digit_counter(int n)
 
 	len = 0;
 	if (n == 0)
-	{
 		return (1);
-	}
 	else if (n < 0)
 	{
 		len++;
@@ -34,6 +32,12 @@ int	digit_counter(int n)
 	return (len);
 }
 
+void	special_case(int n, char *str, int len)
+{
+	str[len - 1] = '8';
+	n /= 10;
+}
+
 char	*ft_itoa(int n)
 {
 	char	*str;
@@ -44,8 +48,10 @@ char	*ft_itoa(int n)
 	i = 0;
 	str = (char *)malloc((len + 1) * sizeof(char));
 	str[len] = '\0';
-	if (!str)
-		return (NULL);
+	if (n == 0)
+		str[0] = '0';
+	if (n == -2147483648)
+		special_case(n, str, len);
 	if (n < 0)
 	{
 		str[0] = '-';

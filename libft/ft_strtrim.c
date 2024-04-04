@@ -12,46 +12,38 @@
 
 #include "libft.h"
 
-unsigned int	ft_search_head(char const *s1, char const *set)
+size_t	ft_search_head(char const *s1, char const *set)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (set[i])
+	while (s1[i] && ft_strchr(set, s1[i]))
 	{
-		if (set[i] != s1[i])
-		{
-			i = 0;
-			break ;
-		}
 		i++;
 	}
 	return (i);
 }
 
-size_t	ft_search_tail(char const *s1, char const *set)
+size_t	ft_search_tail(char const *s1, char const *set, size_t head)
 {
-	int		i;
-	size_t	len;
+	size_t	i;
 
-	i = 0;
-	while (set[i])
+	i = ft_strlen(s1);
+	while (i > head && ft_strchr(set, s1[i - 1]))
 	{
-		if (set[i - 1 - i] != s1[i - 1 - i])
-		{
-			i = 0;
-			break ;
-		}
-		i++;
+		i--;
 	}
-	len = (ft_strlen(s1) - i) - ft_search_head(s1, set);
-	return (len);
+	return (i);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*trim;
+	size_t	head;
+	size_t	tail;
 
-	trim = ft_substr(s1, ft_search_head(s1, set), ft_search_tail(s1, set));
-	return (trim);
+	if (!s1 || !set)
+		return (NULL);
+	head = ft_search_head(s1, set);
+	tail = ft_search_tail(s1, set, head);
+	return (ft_substr(s1, head, tail - head));
 }
