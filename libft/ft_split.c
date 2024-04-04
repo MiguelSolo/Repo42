@@ -65,6 +65,6 @@ char	**ft_split(char const *s, char c)
 		split[i] = new_sub(s, c, &start);
 		i++;
 	}
-	split[i] = '\0';
+	split[i] = NULL;
 	return (split);
 }
