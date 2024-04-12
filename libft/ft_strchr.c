@@ -17,9 +17,10 @@ char	*ft_strchr(const char *s, int c)
 	int	i;
 
 	i = 0;
+	c = (unsigned char)c;
 	while (s[i])
 	{
-		if (s[i] == c)
+		if ((unsigned char)s[i] == c)
 			return ((char *)&s[i]);
 		i++;
 	}
