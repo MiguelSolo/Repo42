@@ -17,9 +17,7 @@ int	digit_counter(long int n)
 	int	len;
 
 	len = 0;
-	if (n == 0)
-		return (1);
-	else if (n < 0)
+	if (n <= 0)
 	{
 		len++;
 		n = -n;
@@ -36,26 +34,26 @@ char	*ft_itoa(int n)
 {
 	char		*str;
 	int			len;
-	int			i;
 	long int	num;
 
 	num = n;
 	len = digit_counter(num);
-	i = 0;
 	str = (char *)malloc((len + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
 	str[len] = '\0';
 	if (num == 0)
 		str[0] = '0';
-	if (num < 0)
+	else if (num < 0)
 	{
 		str[0] = '-';
 		num *= -1;
 	}
 	while (num > 0)
 	{
-		str[len - i - 1] = (num % 10) + 48;
+		len--;
+		str[len] = (num % 10) + 48;
 		num /= 10;
-		i++;
 	}
 	return (str);
 }

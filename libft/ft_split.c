@@ -40,7 +40,7 @@ char	*new_sub(char const *s, char c, int *start)
 		end++;
 	word = ft_substr(s, *start, end - *start);
 	if (!word)
-		return (0);
+		return (NULL);
 	*start = end;
 	return (word);
 }
@@ -48,21 +48,24 @@ char	*new_sub(char const *s, char c, int *start)
 char	**ft_split(char const *s, char c)
 {
 	char	**split;
-	int		w_count;
 	int		i;
 	int		start;
 
-	if (!s)
-		return (0);
-	w_count = count_words(s, c);
-	split = (char **)malloc((w_count + 1) * sizeof(char *));
-	if (!split)
-		return (0);
+	split = (char **)malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (!s || !split)
+		return (NULL);
 	i = 0;
 	start = 0;
-	while (i < w_count)
+	while (i < count_words(s, c))
 	{
 		split[i] = new_sub(s, c, &start);
+		if (!split[i])
+		{
+			while (i > 0)
+				free(split[--i]);
+			free(split);
+			return (NULL);
+		}
 		i++;
 	}
 	split[i] = NULL;
